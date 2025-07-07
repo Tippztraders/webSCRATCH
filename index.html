@@ -1,1 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swipe Lightbox with Dots</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2em;
+      background: #f4f4f4;
+    }
 
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1em;
+      text-align: center;
+    }
+
+    .product-slider {
+      overflow: hidden;
+      position: relative;
+      border-radius: 8px;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+    }
+
+    .product-slides {
+      display: flex;
+      transition: transform 0.4s ease;
+      height: 100%;
+    }
+
+    .product-slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+
+    .price {
+      font-weight: bold;
+      margin-top: 0.5em;
+      color: green;
+    }
+
+    .status {
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .dots {
+      margin-top: 0.5em;
+      display: flex;
+      justify-content: center;
+      gap: 0.5em;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot.active {
+      background: #333;
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 70vh;
+      border-radius: 10px;
+    }
+
+    .lightbox .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .lightbox .lightbox-dots {
+      margin-top: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 0.5em;
+    }
+
+    .lightbox .lightbox-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #666;
+    }
+
+    .lightbox .lightbox-dot.active {
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-slider" id="previewTrigger">
+        <div class="product-slides">
+          <img src="PH3a.jpg" alt="View 1" />
+        </div>
+      </div>
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <p>White Office Chair</p>
+      <p class="price">N$850</p>
+      <p class="status">Excellent Condition</p>
+    </div>
+  </div>
+
+  <!-- 🔍 Lightbox full-view -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeLightbox">&times;</span>
+    <img id="lightboxImage" src="PH3a.jpg" alt="Zoomed Image" />
+    <div class="lightbox-dots" id="lightboxDots"></div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const closeBtn = document.getElementById('closeLightbox');
+    const preview = document.getElementById('previewTrigger');
+    const lightboxDots = document.getElementById('lightboxDots');
+
+    const imageList = ["PH3a.jpg", "PH3b.jpg", "PH3c.jpg"];
+    let currentIndex = 0;
+
+    // Generate dots
+    imageList.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('lightbox-dot');
+      if (i === 0) dot.classList.add('active');
+      lightboxDots.appendChild(dot);
+    });
+
+    const updateLightbox = () => {
+      lightboxImg.src = imageList[currentIndex];
+      document.querySelectorAll('.lightbox-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    };
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      lightbox.style.display = 'flex';
+    }
+
+    preview.addEventListener('click', () => openLightbox(0));
+    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+
+    // Swipe detection
+    let startX = 0;
+    lightboxImg.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+
+    lightboxImg.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      const delta = endX - startX;
+      if (delta > 50 && currentIndex > 0) {
+        currentIndex--;
+        updateLightbox();
+      } else if (delta < -50 && currentIndex < imageList.length - 1) {
+        currentIndex++;
+        updateLightbox();
+      }
+    });
+
+    // Optional: Close lightbox when clicking outside image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
