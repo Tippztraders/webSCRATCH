@@ -184,7 +184,6 @@ footer a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1em;
-  text-align: center;
 }
 
 .donation-item {
