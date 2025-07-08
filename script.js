@@ -80,21 +80,28 @@ const products = [
   }
 ];
 
-// Render products with 2 banner inserts
+// Render products with 2 banner sliders
 document.querySelector(".product-grid").innerHTML = products.map((product, i) => {
   let bannerHTML = '';
 
-  // 🟨 Insert banners at specific positions
   if (i === 4) {
     bannerHTML = `
-      <div class="banner-slot">
-        <img src="B1.jpg" alt="Advert Banner" style="width:100%; border-radius: 10px; margin: 1em 0;" />
+      <div class="banner-slider" id="banner1">
+        <div class="slides">
+          <img src="B1.jpg" alt="Banner 1" />
+          <img src="B2.jpg" alt="Banner 2" />
+        </div>
+        <div class="banner-dots"></div>
       </div>
     `;
   } else if (i === 9) {
     bannerHTML = `
-      <div class="banner-slot">
-        <img src="B2.jpg" alt="Another Banner" style="width:100%; border-radius: 10px; margin: 1em 0;" />
+      <div class="banner-slider" id="banner2">
+        <div class="slides">
+          <img src="B3.jpg" alt="Banner 3" />
+          <img src="B4.jpg" alt="Banner 4" />
+        </div>
+        <div class="banner-dots"></div>
       </div>
     `;
   }
@@ -188,4 +195,42 @@ img.addEventListener("touchend", e => {
     updateLightbox();
   }
 });
+
+// Banner slider logic
+function initBannerSlider(containerId) {
+  const container = document.getElementById(containerId);
+  const slides = container.querySelector(".slides");
+  const images = slides.querySelectorAll("img");
+  const dotsContainer = container.querySelector(".banner-dots");
+
+  let index = 0;
+  const total = images.length;
+
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement("div");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      index = i;
+      update();
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  function update() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    dotsContainer.querySelectorAll("div").forEach((d, i) =>
+      d.classList.toggle("active", i === index)
+    );
+  }
+
+  setInterval(() => {
+    index = (index + 1) % total;
+    update();
+  }, 4000);
+}
+
+setTimeout(() => {
+  initBannerSlider("banner1");
+  initBannerSlider("banner2");
+}, 100);
 </script>
