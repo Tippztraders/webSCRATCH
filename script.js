@@ -29,6 +29,22 @@ const products = [
     price: "N$250",
     condition: "Showroom Quality"
   },
+  ];
+
+const container = document.getElementById('product-container');
+
+  products.forEach((product, index) => {
+    // 🎯 Inject banner in the middle
+    if (product === "BANNER") {
+      const bannerDiv = document.createElement('div');
+      bannerDiv.className = "banner-slot";
+      bannerDiv.innerHTML = `
+        <!-- 🟨 Banner AD Placeholder -->
+        <img src="B1.jpg" alt="Advert Banner" style="width:100%; border-radius: 10px; margin: 1em 0;" />
+      `;
+      container.appendChild(bannerDiv);
+      return;
+    }
   {
     images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
     name: "32L Samsung Microwave",
