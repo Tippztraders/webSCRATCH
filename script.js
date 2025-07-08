@@ -1,3 +1,4 @@
+<script>
 const products = [
   {
     images: ["PH1.jpg"],
@@ -29,22 +30,6 @@ const products = [
     price: "N$250",
     condition: "Showroom Quality"
   },
-  ];
-
-const container = document.getElementById('product-container');
-
-  products.forEach((product, index) => {
-    // 🎯 Inject banner in the middle
-    if (product === "BANNER") {
-      const bannerDiv = document.createElement('div');
-      bannerDiv.className = "banner-slot";
-      bannerDiv.innerHTML = `
-        <!-- 🟨 Banner AD Placeholder -->
-        <img src="B1.jpg" alt="Advert Banner" style="width:100%; border-radius: 10px; margin: 1em 0;" />
-      `;
-      container.appendChild(bannerDiv);
-      return;
-    }
   {
     images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
     name: "32L Samsung Microwave",
@@ -95,35 +80,55 @@ const container = document.getElementById('product-container');
   }
 ];
 
-// Render products
-document.querySelector(".product-grid").innerHTML = products.map((product, i) => `
-  <div class="product-card" id="item${i + 1}">
-    <div class="image-wrapper" style="position: relative;">
-      <img src="${product.images[0]}" alt="${product.name}" onclick="openLightbox(${i}, 0)" />
-      ${
-        product.images.length > 1
-          ? `<div class="image-dots" style="position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px;">
-               ${product.images.map((_, dotIndex) => `
-                 <div style="width: 8px; height: 8px; background: #999; border-radius: 50%; opacity: 0.7;"></div>
-               `).join('')}
-             </div>`
-          : ''
-      }
-    </div>
-    <h4>${product.name}</h4>
-    <p class="price">${product.price}</p>
-    <span class="condition faded-badge">${product.condition}</span>
-    <p class="status">In Stock</p>
-    <div class="like-section">
-      <i class="fas fa-heart" onclick="toggleLike(this)"></i> <span class="like-count">0</span>
-    </div>
-    <a href="https://wa.me/264817859603" target="_blank" class="whatsapp-button">
-      <i class="fab fa-whatsapp"></i> WhatsApp Seller
-    </a>
-  </div>
-`).join('');
+// Render products with 2 banner inserts
+document.querySelector(".product-grid").innerHTML = products.map((product, i) => {
+  let bannerHTML = '';
 
-// Lightbox Logic
+  // 🟨 Insert banners at specific positions
+  if (i === 4) {
+    bannerHTML = `
+      <div class="banner-slot">
+        <img src="B1.jpg" alt="Advert Banner" style="width:100%; border-radius: 10px; margin: 1em 0;" />
+      </div>
+    `;
+  } else if (i === 9) {
+    bannerHTML = `
+      <div class="banner-slot">
+        <img src="B2.jpg" alt="Another Banner" style="width:100%; border-radius: 10px; margin: 1em 0;" />
+      </div>
+    `;
+  }
+
+  return `
+    ${bannerHTML}
+    <div class="product-card" id="item${i + 1}">
+      <div class="image-wrapper" style="position: relative;">
+        <img src="${product.images[0]}" alt="${product.name}" onclick="openLightbox(${i}, 0)" />
+        ${
+          product.images.length > 1
+            ? `<div class="image-dots" style="position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px;">
+                ${product.images.map((_, dotIndex) => `
+                  <div style="width: 8px; height: 8px; background: #999; border-radius: 50%; opacity: 0.7;"></div>
+                `).join('')}
+              </div>`
+            : ''
+        }
+      </div>
+      <h4>${product.name}</h4>
+      <p class="price">${product.price}</p>
+      <span class="condition faded-badge">${product.condition}</span>
+      <p class="status">In Stock</p>
+      <div class="like-section">
+        <i class="fas fa-heart" onclick="toggleLike(this)"></i> <span class="like-count">0</span>
+      </div>
+      <a href="https://wa.me/264817859603" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i> WhatsApp Seller
+      </a>
+    </div>
+  `;
+}).join('');
+
+// Lightbox logic
 let currentProductIndex = 0;
 let currentImageIndex = 0;
 
@@ -183,3 +188,4 @@ img.addEventListener("touchend", e => {
     updateLightbox();
   }
 });
+</script>
