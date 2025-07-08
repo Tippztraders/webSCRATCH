@@ -23,8 +23,6 @@
     price: "N$350",
     condition: "Showroom Quality"
   },
-  // 🟨 Banner inserted here
-  "BANNER",
   {
     images: ["PH5.jpg"],
     name: "Traditional Pot #2",
