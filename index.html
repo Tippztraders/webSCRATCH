@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- ✨ This is to resize desktop layout to look more like mobile view -->
+  <!-- Mobile-friendly and Banner Slider Styling -->
   <style>
     .container {
-      max-width: 480px;    /* mobile-sized layout */
-      margin: 0 auto;      /* center on large screens */
-      padding: 0 12px;     /* optional spacing */
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 12px;
     }
 
     .lightbox {
@@ -60,11 +60,46 @@
     .lightbox-dots .active {
       background: #fff;
     }
+
+    .banner-slider {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 1em 0;
+    }
+    .banner-slider .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .banner-slider img {
+      width: 100%;
+      flex-shrink: 0;
+      border-radius: 10px;
+    }
+    .banner-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      display: flex;
+      transform: translateX(-50%);
+      gap: 5px;
+    }
+    .banner-dots div {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    .banner-dots .active {
+      background: #333;
+    }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header id="home">
     <div class="logo-section">
       <h1 class="stroked-text">Tippz Cash Traders</h1>
@@ -84,23 +119,19 @@
     </nav>
   </header>
 
-  <!-- 📦 Main content wrapped in container to resize on desktop -->
   <div class="container">
     <main>
-      <!-- Hero -->
       <section class="hero">
         <h2>Quality Pre-owned Items at Great Prices.</h2>
         <p>Discover amazing deals on carefully selected second-hand products.</p>
         <a href="#item1" class="cta-button">Shop Now</a>
       </section>
 
-      <!-- Featured Products -->
       <section class="featured" id="featured">
         <h3>Featured Products</h3>
         <div class="product-grid" id="product-container"></div>
       </section>
 
-      <!-- Donations Section -->
       <section id="donations" class="donations">
         <h3>Donations Section</h3>
         <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
@@ -108,40 +139,22 @@
 
       <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
         <div class="donation-grid">
-          <div class="donation-item">
-            <img src="donation1.jpg" alt="Donation 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          </div>
-          <div class="donation-item">
-            <img src="donation2.jpg" alt="Donation 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          </div>
-          <div class="donation-item">
-            <img src="donation3.jpg" alt="Donation 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          </div>
-          <div class="donation-item">
-            <img src="donation4.jpg" alt="Donation 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" />
-          </div>
+          <div class="donation-item"><img src="donation1.jpg" alt="Donation 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
+          <div class="donation-item"><img src="donation2.jpg" alt="Donation 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
+          <div class="donation-item"><img src="donation3.jpg" alt="Donation 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
+          <div class="donation-item"><img src="donation4.jpg" alt="Donation 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
         </div>
       </section>
 
-      <div class="product-grid"></div>
-
-<!-- Lightbox (for zoom/swipe images) -->
-<div id="lightbox" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
-  <img id="lightboxImage" style="max-width: 90%; max-height: 90%;" />
-  <div id="lightboxDots" style="position:absolute; bottom:20px; display:flex; gap:10px;"></div>
-  <button onclick="closeLightbox()" style="position:absolute; top:10px; right:20px; font-size:24px; background:none; color:white; border:none;">&times;</button>
-</div>
-
-      <!-- Lightbox Element -->
+      <!-- Lightbox -->
       <div class="lightbox" id="lightbox">
         <span class="close-btn" onclick="closeLightbox()">&times;</span>
         <img id="lightboxImage" src="" alt="Product View" />
         <div class="lightbox-dots" id="lightboxDots"></div>
       </div>
     </main>
-  </div> <!-- ✅ End of container -->
+  </div>
 
-  <!-- Footer -->
   <footer id="contact">
     <div class="footer-section about" id="about">
       <h4>About Tippz Cash Traders</h4>
@@ -170,7 +183,6 @@
     <p class="copyright">© 2025 Tippz Cash Traders. All rights reserved.</p>
   </footer>
 
-  <!-- JS file -->
   <script src="script.js"></script>
 </body>
 </html>
