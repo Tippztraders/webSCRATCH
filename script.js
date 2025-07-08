@@ -24,7 +24,7 @@
     condition: "Showroom Quality"
   },
   // 🟨 Banner inserted here
-  "B1.jpg",
+  "BANNER",
   {
     images: ["PH5.jpg"],
     name: "Traditional Pot #2",
