@@ -12,7 +12,7 @@ const products = [
     condition: "Pre-Loved"
   },
   {
-    images: ["PH3a.jpg", "PH3b.jpg"],
+    images: ["PH3a.jpg", "PH3b.jpg", "PH3c.jpg"],
     name: "Electrical Frying Pan",
     price: "N$450",
     condition: "Pre-Loved"
@@ -55,12 +55,12 @@ const products = [
   },
   {
     images: ["PH10a.jpg", "PH10b.jpg"],
-    name: "Event Tables, Was:3,550 for both",
-    price: "N$2,900",
+    name: "Event Tables",
+    price: "N$2,700",
     condition: "Excellent Condition"
   },
   {
-    images: ["PH11a.jpg", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg", "PH11f.jpg"],
+    images: ["PH11a.jpg", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg"],
     name: "Assorted Fabric",
     price: "N$20 per meter",
     condition: "Excellent Condition"
@@ -79,10 +79,13 @@ const products = [
   }
 ];
 
-// Render products with banners
-document.querySelector(".product-grid").innerHTML = products.map((product, i) => {
-  let bannerHTML = '';
+// Render products with banners after 4th and 9th product
+const productContainer = document.getElementById("product-container");
 
+productContainer.innerHTML = products.map((product, i) => {
+  let bannerHTML = "";
+
+  // Insert banner after product #4 (index 3)
   if (i === 4) {
     bannerHTML = `
       <div class="banner-slider" id="banner1">
@@ -93,7 +96,9 @@ document.querySelector(".product-grid").innerHTML = products.map((product, i) =>
         <div class="banner-dots"></div>
       </div>
     `;
-  } else if (i === 9) {
+  }
+  // Insert banner after product #9 (index 8)
+  else if (i === 9) {
     bannerHTML = `
       <div class="banner-slider" id="banner2">
         <div class="slides">
@@ -113,11 +118,14 @@ document.querySelector(".product-grid").innerHTML = products.map((product, i) =>
         ${
           product.images.length > 1
             ? `<div class="image-dots" style="position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px;">
-                ${product.images.map((_, dotIndex) => `
-                  <div style="width: 8px; height: 8px; background: #999; border-radius: 50%; opacity: 0.7;"></div>
-                `).join('')}
+                ${product.images
+                  .map(
+                    (_, dotIndex) =>
+                      `<div style="width: 8px; height: 8px; background: #999; border-radius: 50%; opacity: 0.7;"></div>`
+                  )
+                  .join("")}
               </div>`
-            : ''
+            : ""
         }
       </div>
       <h4>${product.name}</h4>
@@ -132,9 +140,9 @@ document.querySelector(".product-grid").innerHTML = products.map((product, i) =>
       </a>
     </div>
   `;
-}).join('');
+}).join("");
 
-// Lightbox logic
+// Lightbox for product images
 let currentProductIndex = 0;
 let currentImageIndex = 0;
 
@@ -151,51 +159,19 @@ function closeLightbox() {
 
 function updateLightbox() {
   const img = document.getElementById("lightboxImage");
-  const dotsContainer = document.getElementById("lightboxDots");
   const images = products[currentProductIndex].images;
-
   img.src = images[currentImageIndex];
-  dotsContainer.innerHTML = images.map((_, i) => `
-    <div class="${i === currentImageIndex ? 'active' : ''}" onclick="goToImage(${i})"></div>
-  `).join('');
 }
 
-function goToImage(i) {
-  currentImageIndex = i;
-  updateLightbox();
-}
-
-// Like button logic
+// Like button toggle
 function toggleLike(icon) {
   const count = icon.nextElementSibling;
   let number = parseInt(count.textContent);
-  icon.classList.toggle('liked');
-  count.textContent = icon.classList.contains('liked') ? number + 1 : number - 1;
+  icon.classList.toggle("liked");
+  count.textContent = icon.classList.contains("liked") ? number + 1 : number - 1;
 }
 
-// Swipe Support for Lightbox
-let startX = 0;
-const img = document.getElementById("lightboxImage");
-
-img.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-img.addEventListener("touchend", e => {
-  const endX = e.changedTouches[0].clientX;
-  const delta = endX - startX;
-  const images = products[currentProductIndex].images;
-
-  if (delta > 50 && currentImageIndex > 0) {
-    currentImageIndex--;
-    updateLightbox();
-  } else if (delta < -50 && currentImageIndex < images.length - 1) {
-    currentImageIndex++;
-    updateLightbox();
-  }
-});
-
-// Banner slider logic
+// Banner slider logic for dynamic banners
 function initBannerSlider(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -207,6 +183,7 @@ function initBannerSlider(containerId) {
   let index = 0;
   const total = images.length;
 
+  // Create dots
   for (let i = 0; i < total; i++) {
     const dot = document.createElement("div");
     if (i === 0) dot.classList.add("active");
@@ -224,14 +201,30 @@ function initBannerSlider(containerId) {
     );
   }
 
+  // Auto-slide every 4 seconds
   setInterval(() => {
     index = (index + 1) % total;
     update();
   }, 4000);
 }
 
-// Wait a bit to let DOM update, then init both banners
-setTimeout(() => {
+// Initialize banner sliders after DOM is ready
+window.addEventListener("load", () => {
   initBannerSlider("banner1");
   initBannerSlider("banner2");
-}, 100);
+});
+
+// Donation section lightbox
+function enlargeImage(imgElement) {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImage");
+  lightboxImg.src = imgElement.src;
+  lightbox.style.display = "flex";
+}
+
+function handleSearch() {
+  const value = document.getElementById("searchInput").value;
+  if (value.trim()) {
+    alert(`You searched for: "${value}"`);
+  }
+}
