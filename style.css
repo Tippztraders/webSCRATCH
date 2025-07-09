@@ -202,8 +202,17 @@ footer a {
 
 .donation-item p {
   margin-top: 0.5em;
-  font-style: italic;
+  font-style: normal;   /* changed from italic */
+  font-weight: bold;    /* made it bold */
   color: #555;
+}
+
+/* ✅ Donation section background */
+#donations {
+  background-color: #f0fff0;
+  padding: 1em;
+  border-radius: 10px;
+  text-align: center;
 }
 
 footer hr {
