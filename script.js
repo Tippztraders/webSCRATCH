@@ -12,7 +12,7 @@ const products = [
     condition: "Pre-Loved"
   },
   {
-    images: ["PH3a.jpg", "PH3b.jpg", "PH3c.jpg"],
+    images: ["PH3a.jpg", "PH3b.jpg"],
     name: "Electrical Frying Pan",
     price: "N$450",
     condition: "Pre-Loved"
@@ -55,12 +55,12 @@ const products = [
   },
   {
     images: ["PH10a.jpg", "PH10b.jpg"],
-    name: "Event Tables",
-    price: "N$2,700",
+    name: "Event Tables, Was:3,550 for both",
+    price: "N$2,900",
     condition: "Excellent Condition"
   },
   {
-    images: ["PH11a.jpg", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg"],
+    images: ["PH11a.jpg", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg", "PH11f.jpg"],
     name: "Assorted Fabric",
     price: "N$20 per meter",
     condition: "Excellent Condition"
