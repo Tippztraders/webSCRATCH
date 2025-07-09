@@ -278,33 +278,7 @@ footer hr {
 }
 
 .container {
-  max-width: 95vw;    /* more width on phones */
-  margin: 0 auto;      
-  padding: 0 12px;     
-}
-
-/* Header banner resizing */
-.banner-header img {
-  width: 100%;
-  height: auto;
-  max-height: 120px;   /* limit height on phones */
-  object-fit: contain;
-  display: block;
-}
-
-/* Nav and search adjustments on small screens */
-@media (max-width: 480px) {
-  .nav-below-banner h1 {
-    font-size: 1.5em;
-    margin: 0.3em 0;
-  }
-
-  .search-bar input[type="text"] {
-    width: 120px;
-  }
-
-  .nav-below-banner .nav a {
-    font-size: 0.9em;
-    margin: 0 6px;
-  }
+  max-width: 480px;    /* max width like a phone screen */
+  margin: 0 auto;      /* center horizontally */
+  padding: 0 10px;     /* some side padding */
 }
