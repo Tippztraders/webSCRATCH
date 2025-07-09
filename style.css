@@ -202,17 +202,8 @@ footer a {
 
 .donation-item p {
   margin-top: 0.5em;
-  font-style: normal;   /* changed from italic */
-  font-weight: bold;    /* made it bold */
+  font-style: italic;
   color: #555;
-}
-
-/* ✅ Donation section background */
-#donations {
-  background-color: #f0fff0;
-  padding: 1em;
-  border-radius: 10px;
-  text-align: center;
 }
 
 footer hr {
@@ -287,50 +278,33 @@ footer hr {
 }
 
 .container {
-  max-width: 480px;    /* max width like a phone screen */
-  margin: 0 auto;      /* center horizontally */
-  padding: 0 10px;     /* some side padding */
+  max-width: 95vw;    /* more width on phones */
+  margin: 0 auto;      
+  padding: 0 12px;     
 }
 
-.banner-slider {
-  position: relative;
-  overflow: hidden;
+/* Header banner resizing */
+.banner-header img {
   width: 100%;
   height: auto;
-  border-radius: 10px;
-  margin: 1em 0;
+  max-height: 120px;   /* limit height on phones */
+  object-fit: contain;
+  display: block;
 }
 
-.banner-slider .slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
+/* Nav and search adjustments on small screens */
+@media (max-width: 480px) {
+  .nav-below-banner h1 {
+    font-size: 1.5em;
+    margin: 0.3em 0;
+  }
 
-.banner-slider img {
-  width: 100%;
-  flex-shrink: 0;
-  border-radius: 10px;
-}
+  .search-bar input[type="text"] {
+    width: 120px;
+  }
 
-.banner-dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  display: flex;
-  transform: translateX(-50%);
-  gap: 5px;
+  .nav-below-banner .nav a {
+    font-size: 0.9em;
+    margin: 0 6px;
+  }
 }
-
-.banner-dots div {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ccc;
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.banner-dots .active {
-  background: #333;
-}
-
