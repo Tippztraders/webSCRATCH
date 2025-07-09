@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- Mobile-friendly and Banner Slider Styling -->
   <style>
     .container {
       max-width: 480px;
@@ -17,48 +16,56 @@
       padding: 0 12px;
     }
 
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 9999;
+    .banner-header {
+      width: 100%;
     }
 
-    .lightbox img {
-      max-width: 90%;
-      max-height: 75vh;
-      border-radius: 10px;
+    .banner-header img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 20px; right: 30px;
-      color: white;
-      font-size: 2em;
-      cursor: pointer;
+    .nav-below-banner {
+      text-align: center;
+      padding: 10px;
     }
 
-    .lightbox-dots {
-      margin-top: 1em;
+    .nav-below-banner h1 {
+      margin: 0.2em 0;
+    }
+
+    .nav-below-banner .search-bar {
       display: flex;
-      gap: 10px;
+      justify-content: center;
+      margin: 0.5em 0;
     }
 
-    .lightbox-dots div {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #666;
+    .nav-below-banner input[type="text"] {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      width: 150px;
+    }
+
+    .nav-below-banner button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      background-color: #28a745;
+      color: white;
       cursor: pointer;
     }
 
-    .lightbox-dots .active {
-      background: #fff;
+    .nav-below-banner .nav {
+      margin-top: 0.5em;
+    }
+
+    .nav-below-banner .nav a {
+      margin: 0 10px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
     }
 
     .banner-slider {
@@ -69,15 +76,18 @@
       border-radius: 10px;
       margin: 1em 0;
     }
+
     .banner-slider .slides {
       display: flex;
       transition: transform 0.5s ease-in-out;
     }
+
     .banner-slider img {
       width: 100%;
       flex-shrink: 0;
       border-radius: 10px;
     }
+
     .banner-dots {
       position: absolute;
       bottom: 10px;
@@ -86,6 +96,7 @@
       transform: translateX(-50%);
       gap: 5px;
     }
+
     .banner-dots div {
       width: 8px;
       height: 8px;
@@ -94,31 +105,88 @@
       opacity: 0.8;
       cursor: pointer;
     }
+
     .banner-dots .active {
       background: #333;
+    }
+
+    /* Donation Section Styles */
+    .donation-wrapper {
+      background-color: #f0fff0;
+      padding: 1em;
+      border-radius: 8px;
+      margin: 2em 0;
+    }
+
+    .donation-wrapper h3,
+    .donation-wrapper p {
+      text-align: center;
+    }
+
+    .donation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 1em;
+    }
+
+    .donation-item {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 0.5em;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .donation-item img {
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .donation-label {
+      margin-top: 0.5em;
+      font-weight: bold;
+      font-style: normal;
+      font-size: 0.9em;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <header id="home">
-    <div class="logo-section">
-      <h1 class="stroked-text">Tippz Cash Traders</h1>
-      <img src="Logo.jpeg" alt="Logo" class="logo-img"/>
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search...">
-      <button><i class="fas fa-search"></i></button>
-    </div>
-    <nav>
-      <ul class="nav-row">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#featured">Products</a></li>
-        <li><a href="#donations">Donations</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-  </header>
 
+  <!-- Header Banner -->
+  <div class="banner-header">
+    <img src="HEADER.jpg" alt="Header Banner">
+  </div>
+
+  <!-- Navigation Below Header -->
+  <div class="nav-below-banner">
+    <h1>Tippz Cash Traders</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <button onclick="handleSearch()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="nav">
+      <a href="#home">Home</a>
+      <a href="#featured">Products</a>
+      <a href="#donations">Donations</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+
+  <!-- Ad Banner Slider (middle) -->
+  <div class="banner-slider">
+    <div class="slides" id="sliderTrack">
+      <img src="B1.jpg" alt="Ad 1">
+      <img src="B2.jpg" alt="Ad 2">
+      <img src="B3.jpg" alt="Ad 3">
+      <img src="B4.jpg" alt="Ad 3">
+    </div>
+    <div class="banner-dots" id="bannerDots"></div>
+  </div>
+
+  <!-- Main Content -->
   <div class="container">
     <main>
       <section class="hero">
@@ -132,29 +200,34 @@
         <div class="product-grid" id="product-container"></div>
       </section>
 
-      <section id="donations" class="donations">
+      <!-- ✅ Donation Section -->
+      <div class="donation-wrapper" id="donations">
         <h3>Donations Section</h3>
         <p>Support our mission by donating usable items. "Making a Difference with Simple Acts of Kindness".</p>
-      </section>
 
-      <section class="donation-gallery" style="max-width: 600px; margin: 2em auto;">
         <div class="donation-grid">
-          <div class="donation-item"><img src="don1.jpg" alt="Donation 1" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
-          <div class="donation-item"><img src="don2.jpg" alt="Donation 2" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
-          <div class="donation-item"><img src="don3.jpg" alt="Donation 3" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
-          <div class="donation-item"><img src="don4.jpg" alt="Donation 4" onclick="enlargeImage(this)" style="width:100%; cursor:pointer; border-radius:8px;" /></div>
+          <div class="donation-item">
+            <img src="don1.jpg" alt="Donation 1" onclick="enlargeImage(this)" />
+            <p class="donation-label">Donate in this space</p>
+          </div>
+          <div class="donation-item">
+            <img src="don2.jpg" alt="Donation 2" onclick="enlargeImage(this)" />
+            <p class="donation-label">Donate in this space</p>
+          </div>
+          <div class="donation-item">
+            <img src="don3.jpg" alt="Donation 3" onclick="enlargeImage(this)" />
+            <p class="donation-label">Not for donation</p>
+          </div>
+          <div class="donation-item">
+            <img src="don4.jpg" alt="Donation 4" onclick="enlargeImage(this)" />
+            <p class="donation-label">Donate in this space</p>
+          </div>
         </div>
-      </section>
-
-      <!-- Lightbox -->
-      <div class="lightbox" id="lightbox">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        <img id="lightboxImage" src="" alt="Product View" />
-        <div class="lightbox-dots" id="lightboxDots"></div>
       </div>
     </main>
   </div>
 
+  <!-- Footer -->
   <footer id="contact">
     <div class="footer-section about" id="about">
       <h4>About Tippz Cash Traders</h4>
@@ -183,6 +256,58 @@
     <p class="copyright">© 2025 Tippz Cash Traders. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- JavaScript -->
+  <script>
+    function handleSearch() {
+      const value = document.getElementById("searchInput").value;
+      if (value.trim()) {
+        alert(`You searched for: "${value}"`);
+      }
+    }
+
+    // Banner slider logic
+    const slides = document.querySelector("#sliderTrack");
+    const dotsContainer = document.getElementById("bannerDots");
+    const slideCount = slides.children.length;
+    let currentIndex = 0;
+
+    function updateSlider() {
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      Array.from(dotsContainer.children).forEach((dot, i) =>
+        dot.classList.toggle("active", i === currentIndex)
+      );
+    }
+
+    function createDots() {
+      for (let i = 0; i < slideCount; i++) {
+        const dot = document.createElement("div");
+        dot.addEventListener("click", () => {
+          currentIndex = i;
+          updateSlider();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    createDots();
+    updateSlider();
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slideCount;
+      updateSlider();
+    }, 4000);
+
+    // Lightbox (if you keep it active)
+    function enlargeImage(imgElement) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImage");
+      lightboxImg.src = imgElement.src;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+  </script>
 </body>
 </html>
