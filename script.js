@@ -18,7 +18,7 @@ const products = [
   {
     images: ["PH3a.jpg", "PH3b.jpg"],
     name: "Electrical Frying Pan",
-    oldPrice: "550",
+         // oldPrice: "550",
     price: "N$450",
     condition: "Pre-Loved"
   },
