@@ -67,7 +67,7 @@ const products = [
     condition: "Pre-Loved"
   },
   {
-    images: ["PH11a.jpg", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg"],
+    images: ["PH11a.png", "PH11b.jpg", "PH11c.jpg", "PH11d.jpg", "PH11e.jpg"],
     name: "Assorted Fabric",
     price: "N$20 per meter",
     condition: "Excellent Condition"
