@@ -29,10 +29,13 @@ const products = [
     condition: "Showroom Quality"
   },
   {
-    images: ["PH5.jpg"],
-    name: "Traditional Pot #2",
-    price: "N$250",
-    condition: "Showroom Quality"
+  images: ["PH2.jpg"],
+  name: "32L Samsung Microwave",
+  oldPrice: "N$850", // Add/remove this to show/hide markdown
+  price: "N$700",
+  condition: "Pre-Loved",
+  status: "Item Sold – No longer available",
+  description: "Reliable and neat, with all features working well."
   },
   {
     images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
