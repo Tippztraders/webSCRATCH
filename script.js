@@ -29,14 +29,16 @@ const products = [
     condition: "Showroom Quality"
   },
   {
+  {
   images: ["TESTPIC.jpg"],
   name: "Test Name",
-    // oldPrice: "N$850",  
+  // oldPrice: "N$850",   // optional: uncomment to show markdown
   price: "N$700",
-   //condition: "Pre-Loved",
-  status: "Item Sold – No longer available",
-  description: "Reliable and neat, with all features working well.",
+  // condition: "Pre-Loved", // optional: omit or comment for sold
+  status: "Item Sold – No longer available", // ← must match exactly (capital S only)
+  description: "Reliable and neat, with all features working well."
   },
+  {
   {
     images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
     name: "32L Samsung Microwave",
