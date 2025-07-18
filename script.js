@@ -29,7 +29,7 @@ const products = [
     condition: "Showroom Quality"
   },
   {
-  images: ["PH2.jpg"],
+  images: ["PH2.png"],
   name: "32L Samsung Microwave",
   oldPrice: "N$850", // Add/remove this to show/hide markdown
   price: "N$700",
