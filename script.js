@@ -33,9 +33,9 @@ const products = [
   name: "Test Name",
     // oldPrice: "N$850",  Add/remove this to show/hide markdown
   price: "N$700",
-  condition: "Pre-Loved",
-  status: "Item Sold – No longer available",
-  description: "Reliable and neat, with all features working well."
+   //condition: "Pre-Loved",
+  status: "Item SOLD – No longer available",
+  description: "Reliable and neat, with all features working well.",
   },
   {
     images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
