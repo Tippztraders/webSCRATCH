@@ -31,7 +31,7 @@ const products = [
   {
   images: ["TESTPIC.jpg"],
   name: "Test Name",
-    // oldPrice: "N$850",  Add/remove this to show/hide markdown
+    // oldPrice: "N$850",  
   price: "N$700",
    //condition: "Pre-Loved",
   status: "Item SOLD – No longer available",
