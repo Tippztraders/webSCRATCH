@@ -34,7 +34,7 @@ const products = [
   oldPrice: "N$850", // Add/remove this to show/hide markdown
   price: "N$700",
   condition: "Pre-Loved",
-    // status: "Item Sold – No longer available",
+  status: "Item Sold – No longer available",
   description: "Reliable and neat, with all features working well."
   },
   {
