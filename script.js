@@ -21,18 +21,21 @@ const products = [
          // oldPrice: "550",
     price: "N$450",
     condition: "Pre-Loved"
-},
-{
-  images: ["TESTPIC.jpg"],
-  name: "Test Name",
-  // oldPrice: "N$850",   // optional: uncomment to show markdown
-  price: "N$700",
-  // condition: "Pre-Loved", // optional: omit or comment for sold
-  status: "Item Sold – No longer available", // ← must match exactly (capital S only)
-  description: "Reliable and neat, with all features working well."
-},
-{
-  images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
+  },
+  {
+    images: ["PH4.jpg"],
+    name: "Traditional Pot #3",
+    price: "N$350",
+    condition: "Showroom Quality"
+  },
+  {
+    images: ["PH5.jpg"],
+    name: "Traditional Pot #2",
+    price: "N$250",
+    condition: "Showroom Quality"
+  },
+  {
+    images: ["PH6a.jpg", "PH6b.jpg", "PH6c.jpg"],
     name: "32L Samsung Microwave",
     price: "N$1,250",
     condition: "Trendsetter"
