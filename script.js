@@ -43,12 +43,14 @@ const products = [
   {
     images: ["PH7.png"],
     name: "Office Chair #3",
-    price: "N$750",
+    oldPrice: 750,
+    price: "N$550",
     condition: "Well-Maintained"
   },
   {
     images: ["PH8.png"],
     name: "Office Chair #1",
+    oldPrice: N$650,
     price: "N$500",
     condition: "Well-Maintained"
   },
